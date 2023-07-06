@@ -1,0 +1,7 @@
+{
+  "name": "hai-bosu",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
