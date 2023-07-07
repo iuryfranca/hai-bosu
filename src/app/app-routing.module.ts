@@ -9,13 +9,6 @@ const routes: Routes = [
         (m) => m.ApresentationPageModule
       ),
   },
-  {
-    path: 'apresentation',
-    loadChildren: () =>
-      import('./apresentation/apresentation.module').then(
-        (m) => m.ApresentationPageModule
-      ),
-  },
 ];
 @NgModule({
   imports: [
