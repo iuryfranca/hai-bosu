@@ -5,8 +5,15 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./apresentation/apresentation.module').then(
-        (m) => m.ApresentationPageModule
+      import('./presentation/presentation.module').then(
+        (m) => m.PresentationPageModule
+      ),
+  },
+  {
+    path: 'welcome',
+    loadChildren: () =>
+      import('./login-end-register/login-end-register.module').then(
+        (m) => m.LoginEndRegisterPageModule
       ),
   },
 ];

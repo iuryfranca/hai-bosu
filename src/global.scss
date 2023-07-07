@@ -52,6 +52,23 @@ ion-button {
   }
 }
 
+ion-input {
+  color: var(--ion-color-dark);
+
+  .sc-ion-input-ios {
+    --placeholder-color: rgb(135, 135, 135);
+  }
+
+  label {
+    gap: 10px;
+  }
+}
+
+.label-text-wrapper .sc-ion-input-ios {
+  color: rgb(91, 91, 91);
+  font-size: 20px;
+}
+
 @font-face {
   font-family: "SF PRO Text, san serif";
   font-style: normal;
@@ -78,11 +95,36 @@ ion-button {
 }
 
 @font-face {
+  font-family: "SF PRO Rounded, san serif";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../src/assets/fonts/SF-Pro-Rounded-Regular.otf");
+}
+
+@font-face {
+  font-family: "SF PRO Rounded Bold";
+  font-style: normal;
+  font-weight: bold;
+  src: url("../src/assets/fonts/SF-Pro-Rounded-Bold.otf");
+}
+
+@font-face {
+  font-family: "SF PRO Rounded SemiBold";
+  src: url("../src/assets/fonts/SF-Pro-Rounded-Semibold.otf");
+}
+
+@font-face {
+  font-family: "SF PRO Rounded Thin";
+  font-weight: lighter;
+  src: url("../src/assets/fonts/SF-Pro-Rounded-Thin.otf");
+}
+
+@font-face {
   font-family: "The Last Shuriken 700";
   font-weight: bold;
   src: url("../src/assets/fonts/the-last-shuriken-700.ttf");
 }
 
-body {
-  font-family: "SF PRO Text";
+* {
+  font-family: "SF PRO Text SemiBold";
 }

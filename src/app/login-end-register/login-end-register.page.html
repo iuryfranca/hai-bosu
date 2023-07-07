@@ -1,0 +1,35 @@
+<ion-content [fullscreen]="true">
+  <div class="welcome-wrapper">
+    <ion-header collapse="condense" class="header-wrapper">
+      <div class="header-logo-wrapper">
+        <div>
+          <img src="../../assets/icon-logo.svg" alt="Logo HAI BOSU" />
+        </div>
+        <div class="logo-description">
+          PARA COMER JAPA, A RESPOSTA SEMPRE É
+          <span style="color: var(--ion-color-red)">SIM, CHEFE!</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; flex-direction: row; gap: 100px">
+          <ion-segment
+            value="login"
+            class="segment-buttons-routers"
+            [(ngModel)]="segmentModel"
+            (ionChange)="segmentChanged($event)"
+          >
+            <ion-segment-button routerLink="login" value="login">
+              <ion-label>Login</ion-label>
+            </ion-segment-button>
+
+            <ion-segment-button routerLink="register" value="register">
+              <ion-label>Register</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </div>
+      </div>
+    </ion-header>
+
+    <ion-router-outlet style="margin-top: 300px"></ion-router-outlet>
+  </div>
+</ion-content>

@@ -1,0 +1,104 @@
+@keyframes infiniteScroll {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: calc(0px - 100vw);
+  }
+}
+
+.background-wrapper {
+  position: absolute;
+
+  height: 75%;
+  width: 100%;
+
+  background-repeat: repeat-x;
+  background-size: 100vw;
+  background-image: url("../../assets/background-lines.svg");
+
+  animation-name: infiniteScroll;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  background-color: var(--ion-color-red-background);
+
+  z-index: -1;
+}
+
+.background-rounded-footer {
+  position: absolute;
+  bottom: 0px;
+  left: -55px;
+  width: 125%;
+  height: 40%;
+  z-index: -1;
+  border-radius: 50% 50% 0 0;
+
+  flex: 0 0 100%;
+
+  box-shadow: 0 0px 0px 4px var(--ion-color-white);
+
+  background-color: var(--ion-color-black);
+}
+
+.presentation-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 20px;
+
+  width: 100%;
+  height: 100%;
+}
+
+.content-presentation-information {
+  position: relative;
+  font-family: "The Last Shuriken 700";
+  text-align: center;
+  text-shadow: 2px 4px var(--ion-color-black);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+
+  gap: 10px;
+}
+
+.content-presentation-footer {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  gap: 20px;
+
+  padding: 20px 0;
+
+  .imageLogo {
+    position: relative;
+    top: -20%;
+  }
+}
+
+.logo-site {
+  position: absolute;
+
+  font-family: "The Last Shuriken 700";
+  text-align: center;
+  color: var(--ion-color-white);
+
+  p {
+    margin: 0;
+  }
+}

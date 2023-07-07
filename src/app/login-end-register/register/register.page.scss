@@ -1,0 +1,71 @@
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+  padding: 20px 40px;
+}
+
+.login-inputs-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+
+  ion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+
+    font-family: "SF PRO Text SemiBold";
+  }
+
+  ion-input {
+    color: var(--ion-color-dark);
+  }
+}
+
+.forgot-password {
+  color: var(--ion-color-dark);
+  font-size: 14px;
+  text-decoration: none;
+
+  :hover {
+    text-decoration: underline;
+  }
+}
+
+.login-button-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.button-login-style {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: 50px;
+  padding: 10px 30px;
+
+  border-radius: 6px;
+  background: var(--ion-color-black);
+}
+
+.text-button {
+  font-size: 16px;
+}

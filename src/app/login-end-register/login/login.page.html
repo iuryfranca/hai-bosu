@@ -1,0 +1,58 @@
+<ion-content [fullscreen]="true">
+  <div class="login-wrapper">
+    <div class="login-inputs-wrapper">
+      <ion-list>
+        <ion-item>
+          <ion-input
+            label="E-mail address"
+            labelPlacement="stacked"
+            [clearInput]="true"
+            placeholder="Enter your e-mail address"
+          >
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            label="Password"
+            labelPlacement="stacked"
+            [clearInput]="true"
+            type="password"
+            placeholder="**********"
+          >
+          </ion-input>
+        </ion-item>
+        <p>
+          <a class="forgot-password" href="">Forgot password</a>
+        </p>
+      </ion-list>
+    </div>
+    <div class="login-button-wrapper">
+      <button class="button-login-style">
+        <span class="text-button">Log in</span>
+        <img src="../../../assets/login-icon.svg" alt="login-icon" />
+      </button>
+      <div style="width: 100%">
+        <span
+          style="
+            color: var(--ion-color-white);
+            padding: 6px 8px;
+            border-radius: 6px;
+            background-color: var(--ion-color-black);
+            justify-self: flex-start;
+            font-size: 14px;
+          "
+        >
+          ou acessar com
+        </span>
+      </div>
+      <button class="button-login-style">
+        <span class="text-button">Google</span>
+        <img src="../../../assets/google-icon.svg" alt="login-icon" />
+      </button>
+      <button class="button-login-style">
+        <span class="text-button">Github</span>
+        <img src="../../../assets/github-icon.svg" alt="login-icon" />
+      </button>
+    </div>
+  </div>
+</ion-content>
