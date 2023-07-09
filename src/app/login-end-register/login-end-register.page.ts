@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-login-end-register',
@@ -8,11 +10,24 @@ import { Component, OnInit } from '@angular/core';
 export class LoginEndRegisterPage implements OnInit {
   segmentModel = 'login';
 
-  constructor() {}
+  currentRoute: string;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+        this.segmentModel = this.currentRoute.includes('login')
+          ? 'login'
+          : this.currentRoute.includes('register')
+          ? 'register'
+          : 'login';
+      }
+    });
+  }
 
   ngOnInit() {}
 
   segmentChanged($event: Event) {
-    console.log($event);
+    console.log('Mudando de aba', $event);
   }
 }
