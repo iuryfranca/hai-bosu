@@ -57,6 +57,20 @@ export class LoginPage implements OnInit {
     }
   }
 
+  async googleLogin() {
+    const loading = await this.loadingController.create();
+    await loading.present();
+
+    const user = await this.authService.loginWithGoogle();
+    await loading.dismiss();
+
+    if (user) {
+      this, this.router.navigateByUrl('/home', { replaceUrl: true });
+    } else {
+      this.showAlert('Login in failed', 'Please try again.');
+    }
+  }
+
   async showAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header,
