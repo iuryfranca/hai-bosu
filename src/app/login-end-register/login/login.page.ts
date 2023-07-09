@@ -62,6 +62,7 @@ export class LoginPage implements OnInit {
     await loading.present();
 
     const user = await this.authService.loginWithGoogle();
+    console.log('USER TELA LOGIN --> ', user);
     await loading.dismiss();
 
     if (user) {

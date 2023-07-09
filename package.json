@@ -28,10 +28,11 @@
     "@capacitor/haptics": "5.0.5",
     "@capacitor/keyboard": "5.0.5",
     "@capacitor/status-bar": "5.0.5",
+    "@codetrix-studio/capacitor-google-auth": "^3.3.2",
     "@ionic/angular": "^7.1.1",
     "firebase": "^9.23.0",
     "ionicons": "^7.1.2",
-    "rxjs": "~7.8.1",
+    "jetifier": "^2.0.0",
     "tslib": "^2.6.0",
     "zone.js": "~0.13.1"
   },

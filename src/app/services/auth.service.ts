@@ -6,15 +6,15 @@ import {
 } from '@angular/fire/auth';
 import {
   signInWithEmailAndPassword,
-  getAuth,
   GoogleAuthProvider,
-  signInWithPopup,
   User,
+  signInWithCredential,
 } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
-import { AlertController } from '@ionic/angular';
+import { AlertController, isPlatform } from '@ionic/angular';
 import { initializeApp } from 'firebase/app';
 import { environment } from '@environment/environment';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,16 @@ import { environment } from '@environment/environment';
 export class AuthService {
   private firestoreRef = getFirestore(initializeApp(environment.firebase));
 
-  constructor(private auth: Auth, private alertController: AlertController) {}
+  constructor(private auth: Auth, private alertController: AlertController) {
+    this.initializeApp();
+  }
+
+  initializeApp() {
+    if (!isPlatform('capacitor')) {
+      console.log('Platform -> [capacitor]');
+      GoogleAuth.initialize();
+    }
+  }
 
   async showAlert(header: string, message: string) {
     const alert = await this.alertController.create({
@@ -55,7 +64,7 @@ export class AuthService {
     })
       .then(() => {
         this.showAlert(
-          'Successfully registered user',
+          'Successfully login user',
           `Welcome ${user?.displayName}!`
         );
       })
@@ -115,8 +124,15 @@ export class AuthService {
 
   async loginWithGoogle() {
     try {
-      const provider = new GoogleAuthProvider();
-      const data = await signInWithPopup(this.auth, provider);
+      let googleUser = await GoogleAuth.signIn();
+
+      console.log('USER GOOGLE ->', googleUser);
+
+      const credential = await GoogleAuthProvider.credential(
+        googleUser.authentication.idToken
+      );
+
+      const data = await signInWithCredential(this.auth, credential);
 
       await this.setUserDoc(data.user);
 
