@@ -32,6 +32,12 @@
   }
 }
 
+.error-message {
+  font-size: 13px;
+  padding-left: 15px;
+  color: var(--ion-color-danger);
+}
+
 .forgot-password {
   color: var(--ion-color-dark);
   font-size: 14px;

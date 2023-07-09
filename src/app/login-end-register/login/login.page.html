@@ -1,58 +1,75 @@
 <ion-content [fullscreen]="true">
-  <div class="login-wrapper">
-    <div class="login-inputs-wrapper">
-      <ion-list>
-        <ion-item>
-          <ion-input
-            label="E-mail address"
-            labelPlacement="stacked"
-            [clearInput]="true"
-            placeholder="Enter your e-mail address"
+  <div style="height: 100%">
+    <form class="login-wrapper" [formGroup]="credentials" (ngSubmit)="login()">
+      <div class="login-inputs-wrapper">
+        <ion-list>
+          <ion-item>
+            <ion-input
+              label="E-mail address"
+              labelPlacement="stacked"
+              [clearInput]="true"
+              placeholder="Enter your e-mail address"
+              formControlName="email"
+            >
+            </ion-input>
+          </ion-item>
+          <ion-note
+            class="error-message"
+            slot="error"
+            *ngIf="(email?.dirty! || email?.touched) && email?.errors"
+            >E-mail is required!</ion-note
           >
-          </ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input
-            label="Password"
-            labelPlacement="stacked"
-            [clearInput]="true"
-            type="password"
-            placeholder="**********"
+          <ion-item>
+            <ion-input
+              label="Password"
+              labelPlacement="stacked"
+              [clearInput]="true"
+              type="password"
+              placeholder="**********"
+              formControlName="password"
+            >
+            </ion-input>
+          </ion-item>
+          <ion-note
+            class="error-message"
+            slot="error"
+            *ngIf="(password?.dirty! || password?.touched) && password?.errors"
+            >Password is required!</ion-note
           >
-          </ion-input>
-        </ion-item>
-        <p>
-          <a class="forgot-password" href="">Forgot password</a>
-        </p>
-      </ion-list>
-    </div>
-    <div class="login-button-wrapper">
-      <button class="button-login-style">
-        <span class="text-button">Log in</span>
-        <img src="../../../assets/login-icon.svg" alt="login-icon" />
-      </button>
-      <div style="width: 100%">
-        <span
-          style="
-            color: var(--ion-color-white);
-            padding: 6px 8px;
-            border-radius: 6px;
-            background-color: var(--ion-color-black);
-            justify-self: flex-start;
-            font-size: 14px;
-          "
-        >
-          ou acessar com
-        </span>
+          <p>
+            <a class="forgot-password" href="/welcome/login">Forgot password</a>
+          </p>
+        </ion-list>
       </div>
-      <button class="button-login-style">
-        <span class="text-button">Google</span>
-        <img src="../../../assets/google-icon.svg" alt="login-icon" />
-      </button>
-      <button class="button-login-style">
-        <span class="text-button">Github</span>
-        <img src="../../../assets/github-icon.svg" alt="login-icon" />
-      </button>
-    </div>
+      <div class="login-button-wrapper">
+        <button class="button-login-style" type="submit">
+          <!-- [disabled]="!credentials.valid" -->
+          <span class="text-button">Log in</span>
+          <img src="../../../assets/login-icon.svg" alt="login-icon" />
+        </button>
+        <div style="width: 100%">
+          <span
+            style="
+              color: var(--ion-color-white);
+              padding: 6px 8px;
+              border-radius: 6px;
+              background-color: var(--ion-color-black);
+              justify-self: flex-start;
+              font-size: 14px;
+            "
+          >
+            ou acessar com
+          </span>
+        </div>
+        <button class="button-login-style" type="button">
+          <span class="text-button">Google</span>
+          <img src="../../../assets/google-icon.svg" alt="login-icon" />
+        </button>
+        <button class="button-login-style" type="button">
+          <span class="text-button">Github</span>
+          <img src="../../../assets/github-icon.svg" alt="login-icon" />
+        </button>
+      </div>
+    </form>
   </div>
 </ion-content>

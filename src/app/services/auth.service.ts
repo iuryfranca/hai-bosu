@@ -1,17 +1,37 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { collection, addDoc } from 'firebase/firestore';
-import { Firestore } from '@angular/fire/firestore';
+import {
+  Auth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from '@angular/fire/auth';
+import { signInWithEmailAndPassword, getAuth } from 'firebase/auth';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+  getDoc,
+} from 'firebase/firestore';
 import { AlertController } from '@ionic/angular';
+import { initializeApp } from 'firebase/app';
+import { environment } from '@environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private firestoreRef = inject(Firestore);
+  private firestoreRef = getFirestore(initializeApp(environment.firebase));
 
   constructor(private auth: Auth, private alertController: AlertController) {}
+
+  async getUserById(id: string) {
+    const documentRef = doc(this.firestoreRef, 'users', id);
+
+    return await getDoc(documentRef).then((doc) => {
+      return doc.data();
+    });
+  }
 
   async login(email: string, password: string) {
     try {
@@ -30,18 +50,45 @@ export class AuthService {
         email,
         password
       )
-        .then((user) => {
-          const collectionRef = collection(this.firestoreRef, 'users');
-          addDoc(collectionRef, { ...user, id: user?.user?.uid }).then(() => {
-            this.showAlert(
-              'Successfully registered user',
-              `Welcome ${user?.user?.displayName}!`
-            );
+        .then(async (data) => {
+          await updateProfile(data.user, {
+            displayName: displayName,
+          }).then(async () => {
+            await setDoc(doc(this.firestoreRef, 'users', data.user.uid), {
+              uid: data?.user?.uid,
+              admin: data?.user?.email,
+              displayName: data?.user?.displayName,
+              email: data?.user?.email,
+              emailVerified: data?.user?.emailVerified,
+              phoneNumber: data?.user?.phoneNumber,
+              // photoURL: data.user.photoURL,
+              favorites: [],
+              orders: [],
+            })
+              .then(() => {
+                this.showAlert(
+                  'Successfully registered user',
+                  `Welcome ${data?.user?.displayName}!`
+                );
+              })
+              .catch((error) => {
+                console.log('Error ->', error);
+                this.showAlert(
+                  'Registration in failed',
+                  'Please try again. | ' + error.message
+                );
+              });
           });
         })
         .catch((error) => {
-          this.showAlert('Registration in failed', 'Please try again.');
+          console.log('Error ->', error);
+
+          this.showAlert(
+            'Registration in failed',
+            'Please try again. | ' + error.message
+          );
         });
+
       return user;
     } catch (error) {
       console.log('Error ->', error);

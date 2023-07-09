@@ -1,36 +1,69 @@
 <ion-content [fullscreen]="true">
-  <div class="login-wrapper">
-    <div class="login-inputs-wrapper">
-      <ion-list>
-        <ion-item>
-          <ion-input
-            label="E-mail address"
-            labelPlacement="stacked"
-            [clearInput]="true"
-            placeholder="Enter your e-mail address"
+  <div style="height: 100%">
+    <form
+      class="login-wrapper"
+      [formGroup]="credentials"
+      (ngSubmit)="register()"
+    >
+      <div class="login-inputs-wrapper">
+        <ion-list>
+          <ion-item>
+            <ion-input
+              label="Name"
+              labelPlacement="stacked"
+              [clearInput]="true"
+              placeholder="Enter your name"
+              formControlName="displayName"
+            >
+            </ion-input>
+          </ion-item>
+          <ion-note
+            class="error-message"
+            slot="error"
+            *ngIf="(displayName?.dirty! || displayName?.touched) && displayName?.errors"
+            >Nome is required!</ion-note
           >
-          </ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input
-            label="Password"
-            labelPlacement="stacked"
-            [clearInput]="true"
-            type="password"
-            placeholder="**********"
+          <ion-item>
+            <ion-input
+              label="E-mail address"
+              labelPlacement="stacked"
+              [clearInput]="true"
+              placeholder="Enter your e-mail address"
+              formControlName="email"
+            >
+            </ion-input>
+          </ion-item>
+          <ion-note
+            class="error-message"
+            slot="error"
+            *ngIf="(email?.dirty! || email?.touched) && email?.errors"
+            >E-mail is required!</ion-note
           >
-          </ion-input>
-        </ion-item>
-        <p>
-          <a class="forgot-password" href="">Forgot password</a>
-        </p>
-      </ion-list>
-    </div>
-    <div class="login-button-wrapper">
-      <button class="button-login-style">
-        <span class="text-button">Registrar</span>
-        <img src="../../../assets/login-icon.svg" alt="login-icon" />
-      </button>
-    </div>
+          <ion-item>
+            <ion-input
+              label="Password"
+              labelPlacement="stacked"
+              [clearInput]="true"
+              type="password"
+              placeholder="**********"
+              formControlName="password"
+            >
+            </ion-input>
+          </ion-item>
+          <ion-note
+            class="error-message"
+            slot="error"
+            *ngIf="(password?.dirty! || password?.touched) && password?.errors"
+            >Password is required!</ion-note
+          >
+        </ion-list>
+      </div>
+      <div class="login-button-wrapper">
+        <button class="button-login-style" type="submit">
+          <span class="text-button">Registrar</span>
+          <img src="../../../assets/login-icon.svg" alt="login-icon" />
+        </button>
+      </div>
+    </form>
   </div>
 </ion-content>
