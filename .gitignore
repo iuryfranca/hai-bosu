@@ -69,3 +69,8 @@ Thumbs.db
 
 .android
 android
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json

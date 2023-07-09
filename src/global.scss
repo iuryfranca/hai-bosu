@@ -52,16 +52,31 @@ ion-button {
   }
 }
 
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+
+  > span {
+    opacity: 1;
+  }
+}
+
 ion-input {
   color: var(--ion-color-dark);
 
   .sc-ion-input-ios {
     --placeholder-color: rgb(135, 135, 135);
+    --placeholder-size: 12px;
   }
 
   label {
     gap: 10px;
   }
+}
+
+input,
+input::placeholder {
+  font-size: 12px;
 }
 
 .label-text-wrapper .sc-ion-input-ios {
@@ -86,6 +101,11 @@ ion-input {
 @font-face {
   font-family: "SF PRO Text SemiBold";
   src: url("../src/assets/fonts/SF-Pro-Text-Semibold.otf");
+}
+
+@font-face {
+  font-family: "SF PRO Text Medium";
+  src: url("../src/assets/fonts/SF-Pro-Text-Medium.otf");
 }
 
 @font-face {
@@ -114,6 +134,11 @@ ion-input {
 }
 
 @font-face {
+  font-family: "SF PRO Rounded Medium";
+  src: url("../src/assets/fonts/SF-Pro-Rounded-Medium.otf");
+}
+
+@font-face {
   font-family: "SF PRO Rounded Thin";
   font-weight: lighter;
   src: url("../src/assets/fonts/SF-Pro-Rounded-Thin.otf");
@@ -126,5 +151,5 @@ ion-input {
 }
 
 * {
-  font-family: "SF PRO Text SemiBold";
+  font-family: "SF PRO Text Medium";
 }
