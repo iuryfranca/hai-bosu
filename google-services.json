@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "509054958417",
+    "project_id": "hai-bosu",
+    "storage_bucket": "hai-bosu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509054958417:android:f97896af5f1b0a7b857170",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509054958417-uifi1vhs4dvs6m5t36napiktocadq9us.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "2883cb764a2933050aacfe0dd897048d3845cf29"
+          }
+        },
+        {
+          "client_id": "509054958417-9b43filaoa6m208cr7sgtm1v1mlm0gk2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWeeglKw9NLZKHHliK-_YQ3AeaQvoTzBI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "509054958417-9b43filaoa6m208cr7sgtm1v1mlm0gk2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

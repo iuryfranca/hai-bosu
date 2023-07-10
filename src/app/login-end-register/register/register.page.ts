@@ -56,13 +56,4 @@ export class RegisterPage implements OnInit {
       this.router.navigateByUrl('/home', { replaceUrl: true });
     }
   }
-
-  async showAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
-      header,
-      message,
-      buttons: ['Ok'],
-    });
-    await alert.present();
-  }
 }

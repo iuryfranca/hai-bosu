@@ -113,7 +113,10 @@ export class AuthService {
   async login(email: string, password: string) {
     try {
       const data = await signInWithEmailAndPassword(this.auth, email, password);
-      this.showAlert('Successfully registered user', `Welcome ${data?.user}!`);
+      this.showAlert(
+        'Successfully registered user',
+        `Welcome ${data?.user.displayName}!`
+      );
 
       return data?.user;
     } catch (error) {

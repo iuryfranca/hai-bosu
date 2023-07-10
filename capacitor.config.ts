@@ -1,12 +1,11 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'false',
-  appName: 'hai-bosu',
+  appId: 'config.xml',
+  appName: 'HAI BOSU',
   webDir: 'www',
   server: {
     androidScheme: 'http',
-    // url: 'http://localhost:4200',
   },
   plugins: {
     GoogleAuth: {
@@ -16,7 +15,8 @@ const config: CapacitorConfig = {
       forceCodeForRefreshToken: false,
       androidClientId:
         '509054958417-r8fjlr17omg3fk78utd6nks3tqqlj34b.apps.googleusercontent.com',
-      iosClientId: '',
+      iosClientId:
+        '509054958417-rdq4pu1vambe4s9md4o9upb0ueesr3b5.apps.googleusercontent.com',
     },
   },
 };
