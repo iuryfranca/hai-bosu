@@ -20,11 +20,6 @@ const routes: Routes = [
             (m) => m.RegisterPageModule
           ),
       },
-      // {
-      //   path: '',
-      //   redirectTo: '/tabs/tab1',
-      //   pathMatch: 'full',
-      // },
     ],
   },
 ];

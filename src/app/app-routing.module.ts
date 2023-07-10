@@ -27,10 +27,26 @@ const routes: Routes = [
       ),
     ...canActivate(redirectLoggedInToHome),
   },
+  // {
+  //   path: 'home',
+  //   loadChildren: () =>
+  //     import('./home/home.module').then((m) => m.HomePageModule),
+  //   ...canActivate(redirectUnauthorizedToLogin),
+  // },
+  // {
+  //   path: 'favorites',
+  //   loadChildren: () =>
+  //     import('./favorites/favorites.module').then((m) => m.FavoritesPageModule),
+  // },
+  // {
+  //   path: 'orders',
+  //   loadChildren: () =>
+  //     import('./orders/orders.module').then((m) => m.OrdersPageModule),
+  // },
   {
-    path: 'home',
+    path: '',
     loadChildren: () =>
-      import('./home/home.module').then((m) => m.HomePageModule),
+      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
     ...canActivate(redirectUnauthorizedToLogin),
   },
 ];
