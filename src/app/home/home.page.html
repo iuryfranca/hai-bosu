@@ -1,19 +1,85 @@
 <ion-content>
-  <div style="height: 100%">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">home</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <div
-      style="
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-      "
-    >
-      <ion-button (click)="logout()"> Logout </ion-button>
+  <div class="home-wrapper">
+    <div class="header-wrapper">
+      <div class="header-group-actions">
+        <div id="click-trigger" class="group-image-avatar">
+          <img
+            style="
+              width: 41px;
+              height: 41px;
+              left: 2px;
+              top: 2px;
+              border-radius: 30px;
+            "
+            src="https://via.placeholder.com/41x41"
+          />
+        </div>
+        <ion-popover
+          trigger="click-trigger"
+          triggerAction="click"
+          style="width: auto !important; padding: 2px"
+        >
+          <ng-template>
+            <ion-content style="width: min-content; padding: 2px">
+              <div>
+                <ion-button
+                  style="font-size: 14px; width: auto; height: auto"
+                  (click)="logout()"
+                >
+                  Logout
+                </ion-button>
+              </div>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+        <div
+          style="
+            width: 100px;
+            align-self: stretch;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            display: inline-flex;
+          "
+        >
+          <div
+            style="
+              width: 99px;
+              text-align: center;
+              color: #df3e3e;
+              font-size: 38px;
+              font-family: The Last Shuriken;
+              font-weight: 400;
+              word-wrap: break-word;
+            "
+          >
+            HAI
+          </div>
+          <div
+            style="
+              width: 100px;
+              text-align: center;
+              color: #df3e3e;
+              font-size: 25px;
+              font-family: The Last Shuriken;
+              font-weight: 400;
+              word-wrap: break-word;
+            "
+          >
+            BOSU
+          </div>
+        </div>
+        <div class="group-button-card">
+          <ion-icon name="cart"></ion-icon>
+        </div>
+      </div>
+      <div class="header-search">
+        <ion-searchbar
+          animated="true"
+          color="light"
+          placeholder="Animated"
+        ></ion-searchbar>
+      </div>
     </div>
   </div>
 </ion-content>

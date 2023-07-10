@@ -9,7 +9,7 @@ import {
 const redirectUnauthorizedToLogin = () =>
   redirectUnauthorizedTo(['welcome/login']);
 
-const redirectLoggedInToHome = () => redirectLoggedInTo(['home']);
+const redirectLoggedInToHome = () => redirectLoggedInTo(['tabs/home']);
 
 const routes: Routes = [
   {
@@ -27,6 +27,12 @@ const routes: Routes = [
       ),
     ...canActivate(redirectLoggedInToHome),
   },
+  {
+    path: 'tabs',
+    loadChildren: () =>
+      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+    ...canActivate(redirectUnauthorizedToLogin),
+  },
   // {
   //   path: 'home',
   //   loadChildren: () =>
@@ -43,12 +49,6 @@ const routes: Routes = [
   //   loadChildren: () =>
   //     import('./orders/orders.module').then((m) => m.OrdersPageModule),
   // },
-  {
-    path: '',
-    loadChildren: () =>
-      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
-    ...canActivate(redirectUnauthorizedToLogin),
-  },
 ];
 @NgModule({
   imports: [
