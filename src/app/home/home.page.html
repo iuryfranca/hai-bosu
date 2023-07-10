@@ -1,9 +1,100 @@
 <ion-content>
+  <ion-menu side="end" contentId="main-content">
+    <div class="cart-manu-wrapper">
+      <div style="margin-bottom: 25px; font-size: 20px">Carrinho</div>
+      <ion-content>
+        <div *ngIf="cart.length === 0" style="text-align: center">
+          Atualmente o carrinho se encontra vazio
+        </div>
+        <div *ngIf="cart.length > 0" style="text-align: center">
+          <div class="list-cart-group">
+            <div
+              class="food-card"
+              style="position: relative"
+              *ngFor="let item of cart"
+            >
+              <div class="count-amount-item">
+                {{amountItemCartById(item.name)}}
+              </div>
+              <img src="{{item.imgUrl}}" alt="Veggie tomato mix" />
+              <div class="food-details-group">
+                <div>
+                  <div class="food-name">{{item.name}}</div>
+                  <div class="food-price">
+                    {{item.price | number : '1.2-2'}}
+                  </div>
+                </div>
+                <div style="display: flex; flex-direction: row; gap: 5px">
+                  <button class="button-add-item" (click)="addItemCart(item)">
+                    <ion-icon
+                      style="font-size: 20px"
+                      name="add-outline"
+                    ></ion-icon>
+                  </button>
+                  <button
+                    class="button-add-item"
+                    (click)="removeItemCart(item.name)"
+                  >
+                    <ion-icon
+                      style="font-size: 20px"
+                      name="remove-outline"
+                    ></ion-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="amount-cart-group">
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+              "
+            >
+              <div>Total de items</div>
+              <div class="amount-cart-text">
+                {{amountItemCart | number : '1.2-2'}}
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+              "
+            >
+              <div>Total a pagar</div>
+              <div class="amount-cart-text">
+                {{amountPriceCart | number : '1.2-2'}}
+              </div>
+            </div>
+          </div>
+          <ion-button style="margin-top: 25px"> Finalizar pedido </ion-button>
+        </div>
+      </ion-content>
+    </div>
+  </ion-menu>
+
   <div class="home-wrapper">
     <div class="header-wrapper">
       <div class="header-group-actions">
         <div id="click-trigger" class="group-image-avatar">
           <img
+            *ngIf="user"
+            style="
+              width: 41px;
+              height: 41px;
+              left: 2px;
+              top: 2px;
+              border-radius: 30px;
+            "
+            src="{{user?.photoURL}}"
+          />
+          <img
+            *ngIf="!user"
             style="
               width: 41px;
               height: 41px;
@@ -15,15 +106,15 @@
           />
         </div>
         <ion-popover
+          class="popover-group"
           trigger="click-trigger"
           triggerAction="click"
-          style="width: auto !important; padding: 2px"
         >
           <ng-template>
             <ion-content style="width: min-content; padding: 2px">
-              <div>
+              <div style="width: min-content">
                 <ion-button
-                  style="font-size: 14px; width: auto; height: auto"
+                  style="font-size: 14px; width: 95px; height: auto"
                   (click)="logout()"
                 >
                   Logout
@@ -32,45 +123,21 @@
             </ion-content>
           </ng-template>
         </ion-popover>
-        <div
-          style="
-            width: 100px;
-            align-self: stretch;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            display: inline-flex;
-          "
-        >
-          <div
-            style="
-              width: 99px;
-              text-align: center;
-              color: #df3e3e;
-              font-size: 38px;
-              font-family: The Last Shuriken;
-              font-weight: 400;
-              word-wrap: break-word;
-            "
-          >
-            HAI
-          </div>
-          <div
-            style="
-              width: 100px;
-              text-align: center;
-              color: #df3e3e;
-              font-size: 25px;
-              font-family: The Last Shuriken;
-              font-weight: 400;
-              word-wrap: break-word;
-            "
-          >
-            BOSU
-          </div>
+        <div class="group-logo">
+          <div class="logo-text" style="font-size: 38px">HAI</div>
+          <div class="logo-text" style="font-size: 25px">BOSU</div>
         </div>
-        <div class="group-button-card">
-          <ion-icon name="cart"></ion-icon>
+        <div class="group-button-card" id="main-content">
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-menu-button>
+                <ion-icon
+                  style="color: var(--ion-color-yellow)"
+                  name="cart"
+                ></ion-icon>
+              </ion-menu-button>
+            </ion-buttons>
+          </ion-toolbar>
         </div>
       </div>
       <div class="header-search">
@@ -79,6 +146,35 @@
           color="light"
           placeholder="Animated"
         ></ion-searchbar>
+      </div>
+    </div>
+    <div class="list-foods-wrapper">
+      <img
+        class="foods-banner"
+        src="../../assets/banner_Prancheta 1 cópia.png"
+        alt="Promoção"
+      />
+      <div class="foods-filter">Filtros</div>
+      <div class="food-list">
+        <div
+          class="food-card"
+          style="position: relative"
+          *ngFor="let item of listProducts"
+        >
+          <div *ngIf="amountItemCartById(item.name)" class="count-amount-item">
+            {{amountItemCartById(item.name)}}
+          </div>
+          <img src="{{item.imgUrl}}" alt="Veggie tomato mix" />
+          <div class="food-details-group">
+            <div>
+              <div class="food-name">{{item.name}}</div>
+              <div class="food-price">{{item.price | number : '1.2-2'}}</div>
+            </div>
+            <button class="button-add-item" (click)="addItemCart(item)">
+              <ion-icon style="font-size: 20px" name="add-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

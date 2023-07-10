@@ -15,21 +15,39 @@ import { AlertController, isPlatform } from '@ionic/angular';
 import { initializeApp } from 'firebase/app';
 import { environment } from '@environment/environment';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { IFoods } from '../foods/foods.service';
+import { ICart } from '../cart/cart.service';
+
+export interface IUser {
+  uid: string;
+  displayName: string;
+  email: string;
+  emailVerified: boolean;
+  phoneNumber: string;
+  photoURL: string;
+  favorites: IFoods[];
+  cart: ICart[];
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private firestoreRef = getFirestore(initializeApp(environment.firebase));
+  public userAuth: IUser;
 
   constructor(private auth: Auth, private alertController: AlertController) {
     this.initializeApp();
   }
 
-  initializeApp() {
+  async initializeApp() {
     if (!isPlatform('capacitor')) {
       console.log('Platform -> [capacitor]');
       GoogleAuth.initialize();
+    }
+
+    if (sessionStorage.getItem('userAuth')) {
+      this.userAuth = JSON.parse(sessionStorage.getItem('userAuth'));
     }
   }
 
@@ -58,9 +76,10 @@ export class AuthService {
       email: user?.email,
       emailVerified: user?.emailVerified,
       phoneNumber: user?.phoneNumber,
-      // photoURL: ser.photoURL,
+      photoURL: user?.photoURL,
       favorites: [],
       orders: [],
+      cart: [],
     })
       .then(() => {
         this.showAlert(
@@ -118,6 +137,9 @@ export class AuthService {
         `Welcome ${data?.user.displayName}!`
       );
 
+      this.userAuth = (await this.getUserById(data?.user.uid)) as IUser;
+      sessionStorage.setItem('userAuth', JSON.stringify(this.userAuth));
+
       return data?.user;
     } catch (error) {
       console.log('Error ->', error);
@@ -128,14 +150,14 @@ export class AuthService {
   async loginWithGoogle() {
     try {
       let googleUser = await GoogleAuth.signIn();
-
-      console.log('USER GOOGLE ->', googleUser);
-
       const credential = await GoogleAuthProvider.credential(
         googleUser.authentication.idToken
       );
 
       const data = await signInWithCredential(this.auth, credential);
+
+      this.userAuth = (await this.getUserById(data?.user.uid)) as IUser;
+      sessionStorage.setItem('userAuth', JSON.stringify(this.userAuth));
 
       await this.setUserDoc(data.user);
 
@@ -148,6 +170,7 @@ export class AuthService {
 
   async logout() {
     try {
+      sessionStorage.clear();
       await this.auth.signOut();
     } catch (error) {
       console.log('Error ->', error);

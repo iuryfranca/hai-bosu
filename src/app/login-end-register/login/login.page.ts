@@ -1,4 +1,4 @@
-import { AuthService } from './../../services/auth.service';
+import { AuthService } from './../../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -51,7 +51,7 @@ export class LoginPage implements OnInit {
     await loading.dismiss();
 
     if (user) {
-      this, this.router.navigateByUrl('/home', { replaceUrl: true });
+      this.router.navigateByUrl('/tabs/home', { replaceUrl: true });
     } else {
       this.showAlert('Login in failed', 'Please try again.');
     }
@@ -66,7 +66,7 @@ export class LoginPage implements OnInit {
     await loading.dismiss();
 
     if (user) {
-      this, this.router.navigateByUrl('/home', { replaceUrl: true });
+      this.router.navigateByUrl('/tabs/home', { replaceUrl: true });
     } else {
       this.showAlert('Login in failed', 'Please try again.');
     }
